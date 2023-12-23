@@ -1,3 +1,4 @@
+lua require('spansky')
 
 set scrolloff=8
 set tabstop=4 softtabstop=4
@@ -14,21 +15,22 @@ filetype plugin on
 set clipboard+=unnamedplus
 
 
-call plug#begin()
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'dense-analysis/ale'
-Plug 'tpope/vim-fugitive'
-Plug 'psf/black'
-Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
-Plug 'nvie/vim-flake8'
-call plug#end()
+" call plug#begin()
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
+" Plug 'dense-analysis/ale'
+" Plug 'tpope/vim-fugitive'
+" Plug 'psf/black'
+" Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+" Plug 'nvie/vim-flake8'
+" call plug#end()
 
 let g:ale_linters = {'python': ['flake8']}
 let g:ale_python_black_options='--line-length=80'
 colorscheme catppuccin
 
 let mapleader = " "
+nnoremap <leader>e :Explore<CR>
 nnoremap <leader>pv :Vex<CR>
 nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
 nnoremap <leader><CR>e :e ~/.config/nvim/init.vim<CR>
