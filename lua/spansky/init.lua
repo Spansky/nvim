@@ -1,5 +1,3 @@
-print("Test")
-
 -- Install Plugin Manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -38,6 +36,39 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>u/<C-r><C-w>/gI<Left><Left>
 vim.opt.signcolumn = "yes"
 vim.opt.incsearch = true
 
+-- as seen in https://shapeshed.com/vim-statuslines/
+local function statusline()
+    local set_color_1 = "%#PmenuSel#"
+    local branch = "%{FugitiveStatusline()}"
+    --local branch = "Master"
+    local set_color_2 = "%#LineNr#"
+    local file_name = " %f"
+    local modified = "%m"
+    local align_right = "%="
+    local fileencoding = " %{&fileencoding?&fileencoding:&encoding}"
+    local fileformat = " [%{&fileformat}]"
+    local filetype = " %y"
+    local percentage = " %p%%"
+    local linecol = " %l:%c"
+
+    return string.format(
+        "%s %s %s%s%s%s%s%s%s%s%s",
+        set_color_1,
+        branch,
+        set_color_2,
+        file_name,
+        modified,
+        align_right,
+        filetype,
+        fileencoding,
+        fileformat,
+        percentage,
+        linecol
+    )
+end
+
+vim.opt.statusline = statusline()
+
 local lsp_zero = require('lsp-zero')
 lsp_zero.on_attach(function(client, bufnr)
   -- see :help lsp-zero-keybindings
@@ -53,4 +84,5 @@ require('mason-lspconfig').setup({
   },
 })
 -- %{FugitiveStatusline()}
-vim.opt.statusline = "%f %m %{FugitiveStatusline()}"
+vim.opt.laststatus = 2 
+-- vim.opt.statusline = "%f %m %{FugitiveStatusline()} Hello"
