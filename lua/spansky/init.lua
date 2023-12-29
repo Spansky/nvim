@@ -24,12 +24,14 @@ require("lazy").setup({
     {'hrsh7th/cmp-nvim-lsp'},
     {'hrsh7th/nvim-cmp'},
     {'L3MON4D3/LuaSnip'},
+    -- Neovim Navigation should be similar to Tmux
+    {"christoomey/vim-tmux-navigator"},
     -- styling
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     -- Git support
     { "tpope/vim-fugitive" },
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-    { "github/copilot.vim" }
+    { "github/copilot.vim" },
 }, opts)
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>u/<C-r><C-w>/gI<Left><Left><Left>]])
