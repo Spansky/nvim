@@ -30,7 +30,6 @@ require("lazy").setup({ -- suggested in https://github.com/VonHeikemen/lsp-zero.
 build = ":TSUpdate",
 config = function()
     local configs = require("nvim-treesitter.configs")
-
     configs.setup({
         ensure_installed = {
             "c",
